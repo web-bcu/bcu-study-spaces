@@ -47,7 +47,7 @@ export default function Footer() {
                             width={48}
                             height={48}
                         />
-                        <p className="items-center font-light text-left">"Founded on June 16, 2024, the Study Committee of the Faculty of Software Engineering is a place to share knowledge and a destination for students to find resources and hone necessary skills."</p>
+                        <p className="items-center font-light text-left">Founded on June 16, 2024, the Study Committee of the Faculty of Software Engineering is a place to share knowledge and a destination for students to find resources and hone necessary skills.</p>
                         {/* <p className="items-center font-light text-center">-Me</p> */}
                     </div>
                 </div>
