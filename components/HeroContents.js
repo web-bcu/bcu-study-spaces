@@ -88,7 +88,7 @@ export default function HeroContent() {
                     each other and contribute to the development of our class. Providing
                     study sources and advice for students is one of our objectives. We aim
                     to create a strong and where every member has the opportunity to
-                    develop their skills and knowledge. Let's build and grow together at
+                    develop their skills and knowledge. Lets build and grow together at
                     BCU Study!
                 </motion.p>
                 {/* <motion.a
