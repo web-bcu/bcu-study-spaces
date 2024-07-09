@@ -18,14 +18,14 @@ export const NavDashBoards = [
         )
     },
     {
-        link: "dashboard/games",
+        link: "/dashboard/games",
         name: "Games",
         icon: (
             <FontAwesomeIcon icon={faGamepad} />
         )
     },
     {
-        link: "dashboard/groups",
+        link: "/dashboard/groups",
         name: "Groups",
         icon: (
             <FontAwesomeIcon icon={faUsers} />

@@ -7,9 +7,9 @@ export default function LayoutDashBoard({ children }) {
         <div>
             <Topbar/>
             <NavBar/>
-            <div className="flex text-white min-h-screen bg-gradient-to-b bg-n-8 gap-12">
+            <div className="flex text-white bg-gradient-to-b min-h-screen bg-n-8 gap-12">
                 <NavBarDashBoard/>
-                <div className="flex flex-col w-10/12 mt-20 ">
+                <div className="flex flex-col w-10/12 mt-20 overflow-y-auto h-screen">
                     {children}
                 </div>
             </div>
