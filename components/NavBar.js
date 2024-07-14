@@ -1,16 +1,19 @@
 'use client'
+import { useAuth } from "@/contexts/AuthContext";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function NavBar() {
     const pathname = usePathname()
-    console.log(pathname)
+    const router = useRouter();
+    const {userLoggedIn} = useAuth();
+    // console.log(pathname)
     return (
         <div className="absolute top-4 left-[650px] text-white z-20">
             <ul className="flex items-center justify-center gap-10 text-xl">
                 <NavLink label="Home" url="/" active={pathname === "/"}/>
                 <NavLink label="About" url="/about" active={pathname.includes("about")}/>
-                <NavLink label="Documents" url="/dashboard/forum" active={pathname.includes("dashboard")}/>
+                <NavLink label="Dashboard" url={`${userLoggedIn ? "/dashboard/forum" : "/signin"}`} active={pathname.includes("dashboard")}/>
             </ul>
         </div>
     )

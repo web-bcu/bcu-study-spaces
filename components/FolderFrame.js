@@ -4,11 +4,13 @@ import { useState } from "react"
 import { deleteFolder } from "./utils/deleteFolder";
 import Button from "./Button";
 import { updateFolder } from "./utils/updateFolder";
+import { useSelector } from "react-redux";
 
 export default function FolderFrame({folderId, folderName}) {
     const router = useRouter();
     const [newName, setNewName] = useState("");
     const [edit, setEdit] = useState(false);
+    const admin = useSelector((state) => state.admin);
 
     const updateFolderName = () => {
         const payload = {
@@ -30,7 +32,7 @@ export default function FolderFrame({folderId, folderName}) {
                     : folderName
                 }
             </button>
-            <div className='flex w-1/6 justify-end gap-4'>
+            <div className={`flex w-1/6 justify-end gap-4 ${admin ? "" : "hidden"}`}>
                 {edit 
                     ? (<div className='flex gap-2'>
                         <Button title='Save' btnClass='btn btn-success text-white px-4 h-4' onClick={updateFolderName}/>

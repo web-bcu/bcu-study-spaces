@@ -1,8 +1,10 @@
 'use client'
 import Image from "next/image";
 import Card from "./Card";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function PostFormCard() {
+    const {currentUser} = useAuth();
 
     const handleImageUpload = (ev) => {
         ev.preventDefault();
@@ -14,10 +16,10 @@ export default function PostFormCard() {
         <Card>
             <div className="flex gap-2">
                 <div>
-                    <Image src="https://firebasestorage.googleapis.com/v0/b/bcu-study-space-cded8.appspot.com/o/avatar%2Fdog.png?alt=media&token=753fcec7-b8c0-4b64-b2be-0e07f43270a8" alt="avatar" width={60} height={60} />
+                    <Image src={currentUser.avatar} alt="avatar" width={60} height={60} />
                 </div>
 
-                <textarea className="grow p-3 h-14 bg-gradient-to-r from-[#432371] to-[#faae7b] border border-slate-50 text-white" placeholder={`Have something to share?`} />
+                <textarea className="grow p-3 h-14 bg-[#192938] border border-slate-50 text-white" placeholder={`Have something to share ${currentUser.name}?`} />
             </div>
             <div className="flex gap-5 items-center mt-2">
                 <div>

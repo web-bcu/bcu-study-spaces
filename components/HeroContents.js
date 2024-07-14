@@ -10,12 +10,18 @@ import {
     slideInFromTop,
 } from "./utils/motion";
 import ReactSparkle from 'react-sparkle';
+import Button from './Button';
+import { useAuth } from '@/contexts/AuthContext';
+import { useRouter } from 'next/navigation';
 // import { SparklesIcon } from 'heroicons/react/24/solid';
 // import { UserCircleIcon } from 'heroicons/react/solid';
 
 
 
 export default function HeroContent() {
+    const {userLoggedIn} = useAuth();
+    const router = useRouter();
+
     const slides = [
         {
             url: '/bcuclass.jpg',
@@ -43,6 +49,15 @@ export default function HeroContent() {
     const goToSlide = (slideIndex) => {
         setCurrentIndex(slideIndex);
     };
+
+    const getStarted = () => {
+        if (userLoggedIn) {
+            router.push('/dashboard/forum');
+        }
+        else {
+            router.push('/signin');
+        }
+    }
 
     return (
         <motion.div
@@ -91,12 +106,12 @@ export default function HeroContent() {
                     develop their skills and knowledge. Lets build and grow together at
                     BCU Study!
                 </motion.p>
-                {/* <motion.a
+                <motion.p
                     variants={slideInFromLeft(1)}
                     className='py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]'
                 >
-                    Get Started!
-                </motion.a> */}
+                    <Button onClick={() => getStarted()} btnClass="btn-primary text-white uppercase" title='Get Started'/>
+                </motion.p>
             </div>
 
             <motion.div

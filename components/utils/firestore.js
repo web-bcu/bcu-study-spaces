@@ -1,9 +1,10 @@
 import { deleteObject, ref } from "firebase/storage";
 
 import { database, storage } from "@/app/firebaseconfig";
-import { collection, addDoc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, deleteDoc, doc } from "firebase/firestore";
 
 const files = collection(database, 'files')
+const users = collection(database, 'users')
 
 export const addFiles = async (fileLink, fileName, parentId) => {
     try {
@@ -44,5 +45,13 @@ export const deleteFile = async (fileName, fileId) => {
         console.log("File deleted successfully");
     } catch (error) {
         console.error("Error deleting file:", error);
+    }
+}
+
+export const addUser = async (user) => {
+    try {
+        await addDoc(users, user)
+    } catch(error) {
+        console.log(error);
     }
 }
