@@ -98,8 +98,8 @@ export default function PostFormCard({ onPost }) {
             {isCreating || isUploading && <PulseLoader speedMultiplier={2} color={'#348DFA'} />}
             {filesName?.length > 0 && (
                 <div className="mt-2 flex gap-2 flex-col">
-                    {filesName.map(name => (
-                        <div className="px-4 flex gap-2 items-center ">
+                    {filesName.map((name, index) => (
+                        <div className="px-4 flex gap-2 items-center" key={index}>
                             <span className="text-white"><FontAwesomeIcon icon={faPaperclip} /></span>
                             {name}
                         </div>
