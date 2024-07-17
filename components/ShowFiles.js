@@ -26,7 +26,7 @@ export default function ShowFiles({parentId}) {
                 <h2 className='absolute right-8'>Tùy chọn</h2>
             </div>
             {fileList.map((file) => {
-                return file.isFolder ? <FolderFrame key={file.id} folderName={file.folderName} folderId={file.id}/> : <FileFrame key={file.id} fileLink={file.fileLink} fileName={file.fileName} fileId={file.id}/>
+                return file.isFolder ? <FolderFrame key={file.id} folderName={file.folderName} folderId={file.id}/> : <FileFrame key={file.id} fileURL={file.fileURL} fileName={file.fileName} fileId={file.id} filePath={file.filePath}/>
             })}
         </div>
     )

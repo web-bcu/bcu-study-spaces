@@ -1,16 +1,19 @@
 import { deleteObject, ref } from "firebase/storage";
 
 import { database, storage } from "@/app/firebaseconfig";
-import { collection, addDoc, deleteDoc, doc } from "firebase/firestore";
+import { collection, addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore";
 
 const files = collection(database, 'files')
 const users = collection(database, 'users')
+const savedPost = collection(database, 'saved_posts')
+const likes = collection(database, 'likes')
 
-export const addFiles = async (fileLink, fileName, parentId) => {
+export const addFiles = async (fileURL, fileName, parentId, filePath) => {
     try {
         await addDoc(files, {
-            fileLink: fileLink,
+            fileURL: fileURL,
             fileName: fileName,
+            filePath: filePath,
             isFolder: false,
             parentId: parentId
         })
@@ -34,10 +37,19 @@ export const addFolder = async (payload) => {
     }
 }
 
-export const deleteFile = async (fileName, fileId) => {
+export const deleteFilePath = async(filePath) => {
     try {
-        const fileRef = ref(storage, `files/${fileName}`);
+        const fileRef = ref(storage, filePath);
         await deleteObject(fileRef);
+    } catch(error) {
+        console.error("Could not delete file path: ", error)
+    }
+}
+
+
+export const deleteFile = async (filePath, fileId) => {
+    try {
+        deleteFilePath(filePath);
 
         const docRef = doc(database, 'files', fileId);
         await deleteDoc(docRef);
@@ -45,6 +57,69 @@ export const deleteFile = async (fileName, fileId) => {
         console.log("File deleted successfully");
     } catch (error) {
         console.error("Error deleting file:", error);
+    }
+}
+
+export const updateFile = async (fileId, newParentId) => {
+    try {
+        const documentRef = doc(database, "files", fileId);
+        await updateDoc(documentRef, {parentId: newParentId})
+    } catch (error) {
+        console.error("Error updating document:", error);
+    }
+}
+
+export const deletePost = async (post) => {
+    try {
+        const {id, filesPath} = post
+        for (const path of filesPath) {
+            deleteFilePath(path);
+        }
+
+        const docRef = doc(database, 'posts', id);
+        await deleteDoc(docRef);
+    } catch(error) {
+        console.error("Could not delete post successfully: ", error)
+    }
+}
+
+export const savePost = async (post_id, user_id) => {
+    try {
+        await addDoc(savedPost, {
+            post_id: post_id,
+            user_id: user_id
+        })
+    } catch(error) {
+        console.error("Error occurred: ", error)
+    }
+}
+
+export const removeSavedPost = async (saved_id) => {
+    try {
+        const docRef = doc(savedPost, saved_id)
+        await deleteDoc(docRef);
+    } catch(error) {
+        console.error("Error occurred: ", error);
+    }
+}
+
+export const addLike = async (post_id, user_id) => {
+    try {
+        await addDoc(likes, {
+            post_id: post_id,
+            user_id: user_id
+        })
+    } catch(error) {
+        console.error("Error occurred: ", error);
+    }
+}
+
+export const removeLike = async (like_id) => {
+    try{
+        const docRef = doc(likes, like_id)
+        await deleteDoc(docRef)
+    } catch(error) {
+        console.error("Error occurred: ", error)
     }
 }
 

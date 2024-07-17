@@ -9,7 +9,7 @@ export default function Avatar({size, url}) {
     return (
         <div className={`${width} relative`}>
             <div className="rounded-full overflow-hidden">
-                <Image src="https://firebasestorage.googleapis.com/v0/b/bcu-study-space-cded8.appspot.com/o/avatar%2Fdog.png?alt=media&token=753fcec7-b8c0-4b64-b2be-0e07f43270a8" alt="avatar" width={80} height={80} />
+                <Image src={url} alt="avatar" width={80} height={80} />
             </div>
         </div>
     )

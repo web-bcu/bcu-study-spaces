@@ -33,15 +33,13 @@ export default function LayoutDashBoard({ children }) {
 
     if (!userLoggedIn) router.push('/signin');
     return (
-        <div>
-            <main>
-                <NavBarDashBoard active={active} />
-                <div className={`banner ${active ? 'active' : undefined}`}>
-                    <Header toggleActive={handleToggleActive} />
-                    {children}
-                </div>
-            </main>
-        </div>
+        <main className="layoutDashBoard">
+            <NavBarDashBoard active={active} />
+            <div className={`banner ${active ? 'active' : undefined}`}>
+                <Header toggleActive={handleToggleActive} />
+                {children}
+            </div>
+        </main>
 
     )
 }

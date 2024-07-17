@@ -19,7 +19,7 @@ export const fileUpload = (file, setProgress, parentId) => {
         },
         () => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                return addFiles(downloadURL, file.name, parentId);
+                return addFiles(downloadURL, file.name, parentId, `files/${file.name}`);
             })
             .catch((error) => {
                 console.error("Error adding files: ", error);

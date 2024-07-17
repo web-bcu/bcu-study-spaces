@@ -17,7 +17,7 @@ export const deleteFolder = async (folderId) => {
                 await deleteDoc(doc(database, "files", singleDoc.id));
             }
             else {
-                await deleteFile(documentData.fileName, singleDoc.id);
+                await deleteFile(documentData.filePath, singleDoc.id);
             }
         });
         await deleteDoc(doc(database, "files", folderId));
