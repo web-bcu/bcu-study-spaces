@@ -21,6 +21,9 @@ export default function LayoutDashBoard({ children }) {
         dispatch(setActive());
     }
 
+    const signIn = () => {
+        router
+    }
 
     if (admins.includes(currentUser.email)) {
         dispatch(setAdmin(true));

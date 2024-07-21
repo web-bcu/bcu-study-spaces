@@ -1,7 +1,7 @@
 import { deleteObject, ref } from "firebase/storage";
 
 import { database, storage } from "@/app/firebaseconfig";
-import { collection, addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { collection, addDoc, deleteDoc, doc, updateDoc, query, where, getDocs } from "firebase/firestore";
 
 const files = collection(database, 'files')
 const users = collection(database, 'users')
@@ -130,3 +130,23 @@ export const addUser = async (user) => {
         console.log(error);
     }
 }
+
+export const fetchFilesByParentId = async (parentId) => {
+    try {
+        // Reference to the collection where files are stored
+
+        // Create a query against the collection
+        const q = query(files, where("parentId", "==", parentId));
+
+        // Execute the query
+        const querySnapshot = await getDocs(q);
+
+        // Extract and return the file data
+        const filesFetched = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        return filesFetched;
+    } catch (error) {
+        console.error("Error fetching files: ", error);
+        throw error;
+    }
+};

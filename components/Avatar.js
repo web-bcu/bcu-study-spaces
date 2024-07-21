@@ -4,12 +4,12 @@ import Image from "next/image";
 export default function Avatar({size, url}) {
     let width = 'w-12';
     if (size === 'lg') {
-        width = 'w-24 md:w-36';
+        width = 'w-52 md:w-72';
     }
     return (
         <div className={`${width} relative`}>
             <div className="rounded-full overflow-hidden">
-                <Image src={url} alt="avatar" width={80} height={80} />
+                <img src={url} alt="avatar"/>
             </div>
         </div>
     )

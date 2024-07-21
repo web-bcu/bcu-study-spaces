@@ -9,7 +9,7 @@ import { useState } from 'react';
 import CommonPregress from './CommonProgress';
 import { toast } from 'sonner';
 
-export default function FileFrame({ fileURL, fileName, fileId, filePath, save }) {
+export default function FileFrame({ fileURL, fileName, fileId, filePath, save, className}) {
     const admin = useSelector((state) => state.admin);
     const [progress, setProgress] = useState(0);
 
@@ -37,7 +37,7 @@ export default function FileFrame({ fileURL, fileName, fileId, filePath, save })
 
     if (fileURL === undefined) return;
     return (
-        <div className='w-full flex items-center hover:bg-gradient-to-r from-[#432371] to-[#faae7b] hover:bg-opacity-40 text-white px-8 py-2 rounded-md border-b border-white'>
+        <div className={`w-full flex items-center hover:bg-gradient-to-r from-[#432371] to-[#faae7b] hover:bg-opacity-40 text-white px-8 py-2 rounded-md border-b border-white ${className}`}>
             <div onClick={() => openFile(fileURL)} className='flex gap-5 items-center w-5/6'>
                 <span className='w-8 h-8 text-lg text-white'><FontAwesomeIcon icon={faFile} /></span>
                 {fileName}

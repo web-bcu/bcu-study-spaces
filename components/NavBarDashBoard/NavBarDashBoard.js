@@ -17,6 +17,7 @@ export default function NavBarDashBoard({active}) {
                 {navData.map((section, index) => (
                     <NavListItem key={index} section={section}/>
                 ))}
+                
             </ul>
         </div>
     )

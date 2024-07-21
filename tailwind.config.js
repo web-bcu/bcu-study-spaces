@@ -24,9 +24,11 @@ module.exports = {
           12: "#2E2A41",
           13: "#6C7275",
         },
+        tertiary: "#151030",
       },
       fontFamily: {
         lobster: ['Lobster', 'cursive'],
+        pacifio: ['Pacifico', 'cursive']
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
