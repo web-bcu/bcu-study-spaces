@@ -49,7 +49,7 @@ export default function UserProfile() {
                 <div className="flex w-1/3 flex-col gap-10">
                     <Avatar url={currentUser.avatar} size="lg"/>
                     <p className="text-3xl">{currentUser.name}</p>
-                    <Button btnClass="btn btn-success text-white w-72" title="Edit Profile"/>
+                    {/* <Button btnClass="btn btn-success text-white w-72" title="Edit Profile"/> */}
                 </div>
                 <div className="flex flex-col gap-3 w-2/3">
                     <p className="text-4xl">Your files</p>

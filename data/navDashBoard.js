@@ -24,11 +24,11 @@ export const NavDashBoards = [
             <FontAwesomeIcon icon={faGamepad} />
         )
     },
-    {
-        link: "/dashboard/groups",
-        name: "Groups",
-        icon: (
-            <FontAwesomeIcon icon={faUsers} />
-        )
-    }
+    // {
+    //     link: "/dashboard/groups",
+    //     name: "Groups",
+    //     icon: (
+    //         <FontAwesomeIcon icon={faUsers} />
+    //     )
+    // }
 ]

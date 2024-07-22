@@ -31,14 +31,14 @@ export default function Footer() {
                             <span className="text-[15px] ml-[6px]">Discord</span>
                         </p>
                     </div>
-                    <div className="w-[10%] h-auto flex flex-col items-start justify-start">
-                        {/* <div className="font-bold text-[16px] mb-[15px]">Pages</div> */}
+                    {/* <div className="w-[10%] h-auto flex flex-col items-start justify-start">
+                        <div className="font-bold text-[16px] mb-[15px]">Pages</div>
                         <ul className="flex-col items-center justify-center gap-5 text-xl">
                             <NavLink label="Home" url="/" active={pathname === "/"}/>
                             <NavLink label="About" url="/about" active={pathname.includes("about")}/>
                             <NavLink label="Documents" url="/files" active={pathname.includes("files")}/>
                         </ul>
-                    </div>
+                    </div> */}
 
                     <div className="w-[40%] h-auto flex flex-col items-start justify-start text-[20px] gap-3">
                         <Image
