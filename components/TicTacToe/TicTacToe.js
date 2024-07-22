@@ -2,6 +2,7 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import './tictactoe.css';
 import Button from '../Button';
+import { useRouter } from 'next/navigation';
 
 export default function TicTacToe() {
     const [board, setBoard] = useState(
@@ -10,6 +11,7 @@ export default function TicTacToe() {
     const [player, setPlayer] = useState("X");
     const [status, setStatus] = useState("Game continues");
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         if (player === "O" && status === "Game continues") {
@@ -162,10 +164,17 @@ export default function TicTacToe() {
         setStatus("Game continues")
     }
 
+    function goBack() {
+        router.back();
+    }
+
     return (
-        <div className="tictactoe">
+        <div className="tictactoe relative">
+            <div className='absolute top-4 left-4'>
+                <Button title="Go Back" btnClass="btn-primary text-white" onClick={goBack}/>
+            </div>
             <h1 className="title">Tic Tac Toe</h1>
-            <div className="board">
+            <div className="board-tic-tac-toe">
                 {board.map((row, i) => (
                     <div className="row" key={i}>
                         {row.map((_, j) => (

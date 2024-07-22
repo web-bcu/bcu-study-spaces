@@ -5,6 +5,8 @@ import Overlay from "../Overlay/Overlay";
 import "./board.css";
 import Tile from "../Tiles/Tiles";
 import Winner from "../Winner/Winner";
+import Button from "../Button";
+import { useRouter } from "next/navigation";
 
 export default function Board() {
     const shuffle = () => new Array(16)
@@ -14,7 +16,8 @@ export default function Board() {
         .map((x, i) => ({ value: x, index: i }))
 
     const [numbers, setNumbers] = useState([])
-    const [animating, setAnimating] = useState(false)
+    const [animating, setAnimating] = useState(false);
+    const router = useRouter();
 
     const moveTile = tile => {
         const i16 = numbers.find(n => n.value === 16).index
@@ -56,17 +59,26 @@ export default function Board() {
         return () => { document.removeEventListener('keydown', handleKeyDown) }
     })
 
+    function goBack() {
+        router.back();
+    }
+
     return (
-        <div className="game">
-            <div className="board">
-                <Overlay />
-                {numbers.map((x, i) =>
-                    // <div key={i}>{x.value}</div>
-                    <Tile key={i} number={x} />
-                )}
+        <div>
+            <div className='absolute top-4 left-4'>
+                <Button title="Go Back" btnClass="btn-primary text-white" onClick={goBack} />
             </div>
-            <Winner numbers={numbers} reset={reset} />
-            <NewGame reset={reset} />
+            <div className="game relative">
+                <div className="board">
+                    <Overlay />
+                    {numbers.map((x, i) =>
+                        // <div key={i}>{x.value}</div>
+                        <Tile key={i} number={x} />
+                    )}
+                </div>
+                <Winner numbers={numbers} reset={reset} />
+                <NewGame reset={reset} />
+            </div>
         </div>
     )
 }
